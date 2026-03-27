@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Gradient Cube (Lab4)</title>
+    <style>
+        body {
+            perspective: 1200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f5f5f5;
+        }
+
+        /* 立方体容器 */
+        .cube {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(25deg) rotateY(35deg);
+        }
+
+        /* 立方体面通用样式 */
+        .face {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        /* 1. 前面：使用 translate() + linear-gradient() */
+        .front {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            transform: translateZ(100px);
+        }
+
+        /* 2. 后面：使用 translate() + linear-gradient() */
+        .back {
+            background: linear-gradient(45deg, #48dbfb, #0abde3);
+            transform: translateZ(-100px) rotateY(180deg);
+        }
+
+        /* 3. 右面：使用 translate() + linear-gradient() */
+        .right {
+            background: linear-gradient(45deg, #1dd1a1, #48dbfb);
+            transform: translateX(100px) rotateY(90deg);
+        }
+
+        /* 4. 左面：使用 translate() + linear-gradient() */
+        .left {
+            background: linear-gradient(45deg, #f368e0, #ff9ff3);
+            transform: translateX(-100px) rotateY(-90deg);
+        }
+
+        /* 5. 顶面：使用 translate() + linear-gradient() + skewX() + skewY() */
+        .top {
+            background: linear-gradient(45deg, #5f27cd, #341f97);
+            transform: translateY(-100px) rotateX(90deg);
+        }
+        /* 在顶面内部演示 skewX() 和 skewY() */
+        .skew-box {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #ff9ff3, #feca57);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) skewX(20deg) skewY(10deg);
+        }
+
+        /* 6. 底面：使用 translate() + linear-gradient() */
+        .bottom {
+            background: linear-gradient(45deg, #ff9f43, #feca57);
+            transform: translateY(100px) rotateX(-90deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="cube">
+        <div class="face front"></div>
+        <div class="face back"></div>
+        <div class="face right"></div>
+        <div class="face left"></div>
+        <div class="face top">
+            <div class="skew-box"></div>
+        </div>
+        <div class="face bottom"></div>
+    </div>
+</body>
+</html>
